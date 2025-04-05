@@ -1,3 +1,4 @@
+"""Takes the input for users 3D printing requests and prints out stats in reply."""
 import time
 import os
 
@@ -48,7 +49,7 @@ def input_validation(isnumeric, error_message, input_message, end_number):
         while True:
             # This while true statment is for the check of int / float
             user_untested = input(f"{input_message}\n> ")
-            # This line takes the input of the user witht the supplied message. 
+            # This line takes the input of the user witht the supplied message.
             if isnumeric is True:
                 try:
                     user_tested = int(user_untested)
@@ -65,7 +66,7 @@ def input_validation(isnumeric, error_message, input_message, end_number):
                     os.system('cls')
             """
             This if/else set first checks which data type I want to check for (int/float) then checks the users input against it.
-            If they do not pass that test, the code loops back to the users input, where they are prompted to try again. 
+            If they do not pass that test, the code loops back to the users input, where they are prompted to try again.
             If they pass the test, they are allowed to continue onto the max number check with the break statment.
             """
 
@@ -80,7 +81,7 @@ def input_validation(isnumeric, error_message, input_message, end_number):
         else:
             return user_tested
         """
-        Easy enough, This is an if else statment that checks if the users inputted number is larger than a number set by me, If it is, it tells the user and loops. It also checks if the input is equal to or less than 0. If true, tells the user and loops. 
+        Easy enough, This is an if else statment that checks if the users inputted number is larger than a number set by me, If it is, it tells the user and loops. It also checks if the input is equal to or less than 0. If true, tells the user and loops.
         """
 
 
@@ -96,22 +97,22 @@ def veiw_stats():
      \/ \___|_| \_/\_/   | .__/|_|  |_|_| |_|\__\___|_|    |___/\__\__,_|\__|___/ 
                          | |                                                      
                          |_|                                                     \n\nWelcome to the 3d printing company, We have three types of printers here:\n\n"""
-    #these lines define the counter and the start of the print string. 
+    # These lines define the counter and the start of the print string.
 
     for i in range(0, len(main_list), 2):
         message_string += f"{str(counter)}) {main_list[i]}\n"
         counter += 1
-    # Prints out all the printers. 
+    # Prints out all the printers.
 
     message_string += "\nYou can look at one of these printers and their filaments indavidually or you can press 4 to exit back to the menu. (1 to 4)"
     # Adds to the message string, post for i in range.
 
     input_index = input_validation(True, "That wasn't a number on the range of 1 to 4", message_string, 4)
-    # Pulls the input validation for the users input on each certain printer. 
+    # Pulls the input validation for the users input on each certain printer.
 
 
     filament_index, info_index = printer_stats(input_index)
-    # Sends off the data to printer stats (getting filamet index), this takes the user with it too.  
+    # Sends off the data to printer stats (getting filamet index), this takes the user with it too.
 
     if filament_index == "True":
         print("returning")
@@ -119,16 +120,16 @@ def veiw_stats():
     # Checking the returning data to see if the code should return the user to the menu or keep them going.
 
     filament_stats(filament_index, info_index)
-    # The final print statment, takes the user to the data for their chosen filament. 
+    # The final print statment, takes the user to the data for their chosen filament.
 
 
 def filament_stats(filament_index, info_index):
+    """Prints out data on the chosen filament. In a define statment because I thought I would have been using it again, I did not."""
     input(f"{main_list[info_index][filament_index][0]} has a cost of {main_list[info_index][filament_index][1]} dollars per mm cubed, a time taken of {main_list[info_index][filament_index][2]} minutes per mm cubes and a weight of {main_list[info_index][filament_index][3]} grams per mm cubed.\n(press enter to continue)")
-    # Prints out data on the chosen filament. In a define statment because I thought I would have been using it again, I did not. 
-    
+
 
 def printer_stats(input_index):
-    """Is used by my new print code to find a filament """
+    """Is used by my new print code to find a filament."""
     counter = 1
     # Used by the code for the numbers beside each loop number, EG: 1) 2) 3).
 
@@ -149,7 +150,7 @@ def printer_stats(input_index):
     message_string += f"\n\nWould you like to look into anyone of these filaments?\nPress the number correlating to the filament or press {len(main_list[info_index])} to exit this menu."
     # Adding a little bit more to the print string before input validation.
 
-    filament_index = input_validation(True, f"That was not a number on a range of one to {len(main_list[info_index])}", message_string, len(main_list[info_index]) + 1)
+    filament_index = input_validation(True, f"That was not a number on a range of one to {len(main_list[info_index])}", message_string, len(main_list[info_index]))
     # Input validation
 
     if filament_index == len(main_list[info_index]):
@@ -163,8 +164,7 @@ def printer_stats(input_index):
 
 
 def veiw_prints():
-    """Lets the user veiw the prints they have chosen.
-    Only veiw though, They had a choice if they got it wrong at the end of new print."""
+    """Lets the user veiw the prints they have chosen.  Only veiw though, They had a choice if they got it wrong at the end of new print."""
 
     if users_list == []:
         print("\nYou don't have any prints, make one then come back here to look at some stats!")
@@ -185,25 +185,26 @@ def veiw_prints():
 
     print_choice = input_validation(True, f"That wasnt a number in the range of one to {len(users_list)}", print_string, len(users_list))
     print_choice -= 1
-    # Validates their input and minusis one so it can be used as an index. 
+    # Validates their input and minusis one so it can be used as an index.
 
     cubed_size = users_list[print_choice][2][0] * users_list[print_choice][2][1] * users_list[print_choice][2][2]
     print_cost = cubed_size * users_list[print_choice][3][2]
     print_time = cubed_size * users_list[print_choice][3][1]
     print_weight = cubed_size * users_list[print_choice][3][3]
-    # Pulling the data from the print job of their choice and assigning it to varibles, ready to print, also does a little maths. 
+    # Pulling the data from the print job of their choice and assigning it to varibles, ready to print, also does a little maths.
 
-    print_cost = int(print_cost + 1)
-    print_time = int(print_time + 1)
-    print_weight = int(print_weight)
+    cubed_size = round(cubed_size / 1000, 2)
+    print_cost = round(print_cost / 1000 + 1, 2)
+    print_time = round(print_time / 1000 + 1, 2)
+    print_weight = round(print_weight / 1000, 2)
     # Rounding the result of the maths via integers (I had it print out 10.0000000006 once...)
 
-    input(f"Your print is called {users_list[print_choice][0]} and is the colour {users_list[print_choice][1]}. It's dimentions are {users_list[print_choice][2][0]} x {users_list[print_choice][2][1]} x {users_list[print_choice][2][2]}, making a total volume of {cubed_size}mm cubed.\nWith the filament you chose ({users_list[print_choice][3][0]}), this print will cost you {print_cost} dollars, take {print_time} minutes to print and weigh {print_weight} grams. ")
+    input(f"Your print is called {users_list[print_choice][0]} and is the colour {users_list[print_choice][1]}. It's dimentions are {users_list[print_choice][2][0]} x {users_list[print_choice][2][1]} x {users_list[print_choice][2][2]}, making a total volume of {cubed_size}cm cubed.\nWith the filament you chose ({users_list[print_choice][3][0]}), this print will cost you {print_cost} dollars, take {print_time} minutes to print and weigh {print_weight} grams. ")
     # Printing the data in a formatted format (haha)
 
 
 def new_print():
-    """Allows the user to add a new print"""
+    """Allows the user to add a new print."""
     count = 1
     print_string = """  _   _                 _____      _       _   
  | \ | |               |  __ \    (_)     | |  
@@ -214,7 +215,7 @@ def new_print():
                                                
                                                \
     \nWelcome to new print, what is the name of your print?\n> """
-    # Defining count and print string. 
+    # Defining count and print string.
 
     print_name = str(input(print_string))
     # Gets user to input their prints name, no validation needed because it's a string.
@@ -222,7 +223,7 @@ def new_print():
     print_string += f"{print_name} \n\nWhat colour would you like to use? (1 to {len(colours)})\n"
     # Adds the users input to the print string and asks the next question.
 
-    for i in range(0,len(colours)):
+    for i in range(0, len(colours)):
         print_string += f"\n{i + 1}) {colours[i]}"
     # Gets the users a list of colours.
 
@@ -236,7 +237,7 @@ def new_print():
     for i in range(0, len(main_list), 2):
         print_string += f"\n{count}) {main_list[i]}, a print volume of ({main_list[i + 1][0][0]}, {main_list[i + 1][0][1]}, {main_list[i + 1][0][2]})mm"
         count += 1
-    # Prints out the printer choices. 
+    # Prints out the printer choices.
 
     os.system('cls')
     printer_type = input_validation(True, f"That isnt a number on a range of 1 to {int(len(main_list) / 2)}", print_string, int(len(main_list) / 2))
@@ -281,6 +282,7 @@ def new_print():
     user_colour = colours[print_colour - 1]
     users_list.append([print_name, user_colour, user_dimentions, filament])
     # Prepears some varibles for the final print. 
+
 
     os.system('cls')
     while True:
@@ -336,4 +338,3 @@ while True:
     """
     Chooses which function to send the user to in accordance to the input, The max input is set to four so if it's not 1, 2 or 3 itll be four and break
     """
-    
