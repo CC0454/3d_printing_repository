@@ -110,12 +110,19 @@ def veiw_stats():
     input_index = input_validation(True, "That wasn't a number on the range of 1 to 4", message_string, 4)
     # Pulls the input validation for the users input on each certain printer.
 
+    if input_index == 4:
+        print("returning")
+        time.sleep(3)
+        os.system('cls')
+        return
+    # Checks if the user wants to exit the code, if they do, retruns to them to the menu.
 
     filament_index, info_index = printer_stats(input_index)
     # Sends off the data to printer stats (getting filamet index), this takes the user with it too.
 
     if filament_index == "True":
         print("returning")
+        time.sleep(3)
         return
     # Checking the returning data to see if the code should return the user to the menu or keep them going.
 
@@ -125,7 +132,7 @@ def veiw_stats():
 
 def filament_stats(filament_index, info_index):
     """Prints out data on the chosen filament. In a define statment because I thought I would have been using it again, I did not."""
-    input(f"{main_list[info_index][filament_index][0]} has a cost of {main_list[info_index][filament_index][1]} dollars per mm cubed, a time taken of {main_list[info_index][filament_index][2]} minutes per mm cubes and a weight of {main_list[info_index][filament_index][3]} grams per mm cubed.\n(press enter to continue)")
+    input(f"{main_list[info_index][filament_index][0]} has a cost of {main_list[info_index][filament_index][1]} dollars per mm cubed, a time taken of {main_list[info_index][filament_index][2]} minutes per mm cubed and a weight of {main_list[info_index][filament_index][3]} grams per mm cubed.\n(press enter to continue)")
 
 
 def printer_stats(input_index):
