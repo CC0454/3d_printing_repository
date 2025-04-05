@@ -206,7 +206,7 @@ def veiw_prints():
     print_weight = round(print_weight / 1000, 2)
     # Rounding the result of the maths via integers (I had it print out 10.0000000006 once...)
 
-    input(f"Your print is called {users_list[print_choice][0]} and is the colour {users_list[print_choice][1]}. It's dimentions are {users_list[print_choice][2][0]} x {users_list[print_choice][2][1]} x {users_list[print_choice][2][2]}, making a total volume of {cubed_size}cm cubed.\nWith the filament you chose ({users_list[print_choice][3][0]}), this print will cost you {print_cost} dollars, take {print_time} minutes to print and weigh {print_weight} grams. ")
+    input(f"Your print is called {users_list[print_choice][0]} and is the colour {users_list[print_choice][1]}. It's dimentions are {users_list[print_choice][2][0]} x {users_list[print_choice][2][1]} x {users_list[print_choice][2][2]}, making a total volume of {cubed_size}cm cubed.\nWith the filament you chose ({users_list[print_choice][3][0]}), this print will cost you {print_cost} dollars, take {print_time} minutes to print and weigh {print_weight} grams.\n(press enter to continue)")
     # Printing the data in a formatted format (haha)
 
 
